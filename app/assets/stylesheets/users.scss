@@ -1,3 +1,52 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+form,
+.user-account {
+  max-width: 400px;
+  width: 90%;
+  margin: 0 auto;
+  border: 1px solid #333;
+  padding: 20px;
+}
+input {
+  width: -webkit-fill-available;
+  height: 30px;
+  padding: 0 0 0 10px;
+  border: 1px solid #333;
+}
+div.field,
+div.actions {
+  margin-bottom: 20px;
+}
+input[name="commit"] {
+  background: green;
+  color: #fff;
+  border: none;
+}
+.header {
+  text-align: center;
+  margin: 50px auto;
+}
+
+body {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+#error_explanation {
+  width: auto !important;
+}
+.field_with_errors {
+  display: block;
+}
+
+.user-welcome {
+  font-weight: 300;
+}
+.user-welcome span {
+  font-weight: 500;
+}
+.something_else {
+  text-align: center;
+}
