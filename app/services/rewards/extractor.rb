@@ -9,7 +9,7 @@ module Rewards
     end
 
     def extract
-      rows = @data.split("\n").map
+      rows = data.split("\n").map
       customers = get_customers_data(rows)
     end
 
@@ -64,11 +64,11 @@ module Rewards
           if row.split(" ").include?("recommends") && row.split(" ")[4] == key
             recommendation[:recommendation_time] = row.strip.first(TIME_SPREAD)
             recommendation[:parent] = row.split(" ")[2]
-            puts "Recommendation Found for #{key}!"
-          else
-            print "."
           end
         end
+        break if recommendation.present? #quit if first recommendation is found
+
+        # save two recommendations to an array, sort with time & select first
       end
       recommendation
     end
@@ -81,7 +81,7 @@ module Rewards
             acceptance[:acceptance_time] = row.strip.first(TIME_SPREAD)
           end
         end
-      end 
+      end
       acceptance  
     end
 

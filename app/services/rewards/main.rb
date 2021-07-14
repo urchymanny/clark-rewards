@@ -1,14 +1,19 @@
 module Rewards
   class Main
-    attr_reader :data
+    attr_reader :data, :customers, :response
 
     def initialize(data)
         @data = data
+        @customers = Generator.new(data).run
+        @response = {}
     end
 
     def perform
-      customers  = Generator.new(data).run     
-    end    
-
+      customer_rewards = Rewarder.new(customers).perform
+      customer_rewards.each do |customer|
+        response[customer.key] = customer.points
+      end
+      response
+    end
   end
 end

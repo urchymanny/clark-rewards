@@ -1,15 +1,15 @@
 module Rewards
   class Customer
-    # attr_reader :accept, :key, :recommendation_time, :acceptance_time, :parent,
-
+    attr_reader :key, :parent, :accepted_contract, :recommendation_time, :acceptance_time, :points, :root
+    attr_accessor :points
     def initialize(customer_data)
       @key = customer_data[:name]
       @parent = customer_data[:parent]
-      @accepted_contract = check_acceptance(customer_data[:accept])
+      @accepted_contract = customer_data[:accept] || false
       @recommendation_time =  parse_time(customer_data[:recommendation_time])
       @acceptance_time = parse_time(customer_data[:acceptance_time])
-      @points = customer_data[:points]
-      @root = customer_data[:root]
+      @points = customer_data[:points] || 0.0
+      @root = customer_data[:root] || false
     end
     
     def check_acceptance(bool)
