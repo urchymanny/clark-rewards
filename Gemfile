@@ -6,11 +6,6 @@ ruby '3.0.0'
 gem 'rails', '~> 6.1.4'
 gem 'pg'
 gem 'puma', '~> 5.0'
-# gem 'sass-rails', '>= 6'
-gem 'webpacker', '~> 5.0'
-# gem 'turbolinks', '~> 5'
-# gem 'jbuilder', '~> 2.7'
-# gem 'bcrypt', '~> 3.1.7'
 
 gem 'bootsnap', '>= 1.4.4', require: false
 
@@ -29,13 +24,10 @@ group :test do
   gem 'capybara', '>= 3.26'
   gem 'selenium-webdriver'
   gem 'webdrivers'
+  gem "rspec", "~> 3.0"
+  gem 'rspec-rails', '~> 5.0.0'
+  gem 'rexml', '~> 3.2', '>= 3.2.5'
+  gem 'rspec-collection_matchers'
 end
-
-# Testing
-gem "rspec", "~> 3.0"
-gem 'rspec-rails', '~> 5.0.0'
-gem 'rexml', '~> 3.2', '>= 3.2.5'
-gem 'rspec-collection_matchers'
-
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

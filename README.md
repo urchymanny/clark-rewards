@@ -16,14 +16,15 @@ To run this project, I have created two options
 
 - You need to install ruby, rails on your local machine and then run the rails console
 
-  - ```shell
-    rails console
-    ```
+  ```shell
+  rails console
+  ```
 
 - You can make a post request with the input data to the provided url below
 
-  - ```shell
-    curl https://sodnsdosnd.com
-    ```
+  ```shell
+  curl https://sodnsdosnd.com
+  ```
 
 - 
+
