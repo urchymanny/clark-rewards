@@ -1,25 +1,29 @@
-# README
+# Clark Coding Challenge
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This application takes in an input of customers recommendations and acceptance and returns points which are different for each customer and is based on their invitees acceptance to their recommendations.
 
-Things you may want to cover:
+- Ruby version - `3.0.0`
+- Dependencies
+  - Rails
+  - Byebug
+  - RSpec
+  - rexml
+  - RSpec
 
-* Ruby version
+## Installation
 
-* System dependencies
+To run this project, I have created two options
 
-* Configuration
+- You need to install ruby, rails on your local machine and then run the rails console
 
-* Database creation
+  - ```shell
+    rails console
+    ```
 
-* Database initialization
+- You can make a post request with the input data to the provided url below
 
-* How to run the test suite
+  - ```shell
+    curl https://sodnsdosnd.com
+    ```
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-# clark-rewards
+- 
