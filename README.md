@@ -23,7 +23,7 @@ To run this project, I have created two options
 - You can make a post request with the input data to the provided url below
 
   ```shell
-  curl https://sodnsdosnd.com
+  curl --location --request POST 'https://clark-rewards.herokuapp.com/rewards' --data-raw '{"data": "2018-06-12 09:41 A recommends B \n 2018-06-14 09:41 B accepts \n 2018-06-16 09:41 B recommends C \n 2018-06-17 09:41 C accepts \n 2018-06-19 09:41 C recommends D \n 2018-06-23 09:41 B recommends D \n 2018-06-25 09:41 D accepts"}'
   ```
 
 - 
