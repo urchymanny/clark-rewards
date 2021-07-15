@@ -14,6 +14,8 @@ module Rewards
         customers << customer
       end
       customers
+
+      # extract customers from data and create customer instances
     end
 
   end

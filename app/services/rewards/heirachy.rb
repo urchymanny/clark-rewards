@@ -14,6 +14,7 @@ module Rewards
     def get_root
       customers.select {|c| c.root == true}[0]
     end
+    # get root from customers list
 
     def reward_ancestors(customer)
       parent = parent(customer)
@@ -22,15 +23,18 @@ module Rewards
       inject_customer_to_tree(customer)
       reward_parents(customer, 0) if customer.accepted_contract
     end
+    # reward ancestors
 
     def set_root_node(customer)
       tree[:root] = customer      
     end
+    # set root node on heirachy tree
 
     def inject_customer_to_tree(customer)
       return customer if tree.include?(customer)
       tree << customer
     end
+    # add customer to tree
 
     def reward_parents(customer, level)
       return if level > MAX_LEVEL
@@ -40,14 +44,17 @@ module Rewards
       level += 1
       reward_parents(parent, level)
     end
+    # loop through and reward parents  
 
     def points(level)
       (1.0/2.0)**level
     end
+    # calculate points
 
     def parent(customer)
       customers.select {|c| c.key == customer.parent}[0]
     end
+    # find customer parent
 
   end
 end

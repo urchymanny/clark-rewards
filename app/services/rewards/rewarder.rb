@@ -16,10 +16,12 @@ module Rewards
           customer_tree.reward_ancestors(customer)
         end
       end
+      # create customer tree and reward them accordingly
     end
 
     def customer_tree
       @customer_tree ||= Heirachy.new(customers)
+      # make sure customer tree is not reset if it exists already
     end
   end
 end
