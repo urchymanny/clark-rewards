@@ -6,13 +6,21 @@ This application takes in an input of customers recommendations and acceptance a
 
 ## Installation
 
-To run this project, I have created two options - to run the project in your console or make a http POST request and get formatted response as shown below:
+To run this project, I have created two options - to run the project in your `rails console` or make a http POST request and get formatted response as shown below:
 
-- You can make a `post` request to a version on `heroku` with the input data which would calculate the rewards and return a json response
+You can make a `post` request to a version on `heroku` with the input data which would calculate the rewards and return a json response
 
-  ```shell
-  curl -XPOST -H "Content-type: application/json" -d '{"data": "2018-06-12 09:41 A recommends B \n 2018-06-14 09:41 B accepts \n 2018-06-16 09:41 B recommends C \n 2018-06-17 09:41 C accepts \n 2018-06-19 09:41 C recommends D \n 2018-06-23 09:41 B recommends D \n 2018-06-25 09:41 D accepts"}' 'https://clark-rewards.herokuapp.com/rewards'
-  ```
+```shell
+curl -XPOST -H "Content-type: application/json" -d '{"data": "2018-06-12 09:41 A recommends B \n 2018-06-14 09:41 B accepts \n 2018-06-16 09:41 B recommends C \n 2018-06-17 09:41 C accepts \n 2018-06-19 09:41 C recommends D \n 2018-06-23 09:41 B recommends D \n 2018-06-25 09:41 D accepts"}' 'https://clark-rewards.herokuapp.com/rewards'
+```
+
+You can also make the request with a txt file containing the input:
+
+```shell
+curl --location --request POST 'https://clark-rewards.herokuapp.com/rewards/from/file' --form 'file=@"customer.txt"'
+```
+
+make sure to run this from the directory where the customer.txt file is saved on your local machine
 
 The above would produce a response:
 
@@ -71,3 +79,4 @@ To test this application, navigate to the root directory and run this command in
 rspec
 ```
 
+Thank ::heart:
