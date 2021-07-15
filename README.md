@@ -12,25 +12,37 @@ This application takes in an input of customers recommendations and acceptance a
 
 ## Installation
 
-To run this project, I have created two options
+To run this project, I have created two options - to run the project in your console or make a http POST request and get formatted response as shown below:
 
-- You need to install ruby, rails on your local machine and then run the rails console
-
-  ```shell
-  rails console
-  ```
-
-- You can make a post request with the input data to the provided url below
+- You can make a `post` request to a version on `heroku` with the input data which would calculate the rewards and return a json response
 
   ```shell
   curl -XPOST -H "Content-type: application/json" -d '{"data": "2018-06-12 09:41 A recommends B \n 2018-06-14 09:41 B accepts \n 2018-06-16 09:41 B recommends C \n 2018-06-17 09:41 C accepts \n 2018-06-19 09:41 C recommends D \n 2018-06-23 09:41 B recommends D \n 2018-06-25 09:41 D accepts"}' 'https://clark-rewards.herokuapp.com/rewards'
   ```
 
+The above would produce a response:
+
+```json
+{"A":1.75,"B":1.5,"C":1.0,"D":0.0}
+```
+
 ## Usage
 
 To use this project in the rails console, follow the steps below;
 
-First, we need to save the input in a variable
+First, you need to install ruby, rails on your local machine. Navigate to the project directory and then run
+
+```ruby
+bundle install
+```
+
+Then, open the rails console by using
+
+```ruby
+rails console
+```
+
+Then, we need to save the input in a variable
 
 ```ruby
 data = "2018-06-12 09:41 A recommends B \n 2018-06-14 09:41 B accepts \n 2018-06-16 09:41 B recommends C \n 2018-06-17 09:41 C accepts \n 2018-06-19 09:41 C recommends D \n 2018-06-23 09:41 B recommends D \n 2018-06-25 09:41 D accepts"
@@ -51,5 +63,17 @@ After initializing the Main object class, we proceed to run the method that rewa
 
 ```ruby
 rewards.perform
+```
+
+The perform method runs successfully with the help of the ``Reward::Heirachy`` class.
+
+- The ``Reward::Heirachy`` class arranges the customers in a straight line tree and rewards each customer's parent from the root customers(the first customer on the list of customers who accepted no contract or has any recommendation time) to the latest customer
+
+## Testing
+
+To test this application, navigate to the root directory and run this command in your shell/terminal
+
+```shell
+rspec
 ```
 
