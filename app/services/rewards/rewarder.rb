@@ -14,8 +14,6 @@ module Rewards
       customers.each do |customer|
         if customer.accepted_contract
           customer_tree.reward_ancestors(customer)
-        else
-          # customer_tree.create_reward_node(customer)
         end
       end
     end
