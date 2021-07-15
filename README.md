@@ -14,7 +14,7 @@ You can make a `post` request to a version on `heroku` with the input data which
 curl -XPOST -H "Content-type: application/json" -d '{"data": "2018-06-12 09:41 A recommends B \n 2018-06-14 09:41 B accepts \n 2018-06-16 09:41 B recommends C \n 2018-06-17 09:41 C accepts \n 2018-06-19 09:41 C recommends D \n 2018-06-23 09:41 B recommends D \n 2018-06-25 09:41 D accepts"}' 'https://clark-rewards.herokuapp.com/rewards'
 ```
 
-You can also make the request with a txt file containing the input:
+You can also make the request with a `txt file` containing the input:
 
 ```shell
 curl --location --request POST 'https://clark-rewards.herokuapp.com/rewards/from/file' --form 'file=@"customer.txt"'
@@ -79,4 +79,8 @@ To test this application, navigate to the root directory and run this command in
 rspec
 ```
 
-Thank ::heart:
+&nbsp;
+
+Thank ​You​!
+
+Mba Uchenna
