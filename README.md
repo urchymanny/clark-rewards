@@ -3,12 +3,6 @@
 This application takes in an input of customers recommendations and acceptance and returns points which are different for each customer and is based on their invitees acceptance to their recommendations.
 
 - Ruby version - `3.0.0`
-- Dependencies
-  - Rails
-  - Byebug
-  - RSpec
-  - rexml
-  - RSpec
 
 ## Installation
 
@@ -67,7 +61,7 @@ rewards.perform
 
 The perform method runs successfully with the help of the ``Reward::Heirachy`` class.
 
-- The ``Reward::Heirachy`` class arranges the customers in a straight line tree and rewards each customer's parent from the root customers(the first customer on the list of customers who accepted no contract or has any recommendation time) to the latest customer
+- The ``Reward::Heirachy`` class arranges the customers in a straight line tree with each invitee directly below their recommenders and rewards each customer's parent from the root customers(the first customer on the list of customers who accepted no contract or has any recommendation time) to the latest customer
 
 ## Testing
 
