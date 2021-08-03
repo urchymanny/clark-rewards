@@ -22,7 +22,7 @@ module Rewards
         data_in_array = row.split(" ")
         if data_in_array.length > 3
           customers_keys << data_in_array[2]
-          if data_in_array.include?("recommends")
+          if data_in_array[3] == "recommends"
             customers_keys << data_in_array[4]
           end
         end
@@ -36,11 +36,12 @@ module Rewards
     def build_customer_data(customers_keys, rows)
       customers_data = []
       customers_keys.each do |key|
-        recommendation = find_recommendation(rows,key)
-        acceptance = find_acceptance(rows, key)
-        customer_data = build_customer(key,recommendation,acceptance)
+        customer_rows = rows.filter{ |s| s.include? key}
+        actions = find_actions(customer_rows,key)
+        customer_data = build_customer(key,actions)
         customers_data << customer_data
       end
+      byebug
       customers_data
       # get customer recommendation
       # get customer acceptance
@@ -48,13 +49,13 @@ module Rewards
       # add to array of customers Hashes 
     end
 
-    def build_customer(key, recommendation, acceptance)
+    def build_customer(key, actions)
       customer = {}
-      if recommendation.present?
-        customer = { name: key, recommendation_time: recommendation[:recommendation_time], parent: recommendation[:parent]}
-        if acceptance.present?
+      if actions[:recommendation_time].present?
+        customer = { name: key, recommendation_time: actions[:recommendation_time], parent: actions[:parent]}
+        if actions[:acceptance_time].present?
           customer[:accept] = true
-          customer[:acceptance_time] = acceptance[:acceptance_time]
+          customer[:acceptance_time] = actions[:acceptance_time]
         end
       else
         customer = { 
@@ -66,34 +67,55 @@ module Rewards
       # prepare a customer's Hash which would be used to create a Customer instance for each customer
     end
 
-    def find_recommendation(rows,key)
-      recommendation = {}
+    def find_actions(rows, key) #find recommendation and acceptance time
+      actions = {key: key}
       rows.each do |row|
-        if row.include? " #{key}"
-          if row.split(" ").include?("recommends") && row.split(" ")[4] == key
-            recommendation[:recommendation_time] = row.strip.first(TIME_SPREAD)
-            recommendation[:parent] = row.split(" ")[2]
-          end
+        row_items = row.split(" ")
+        # find recommendation
+        if row_items[3] == "recommends" && row_items[4] == key
+          actions[:recommendation_time] ||= get_time(row)
+          actions[:parent] ||= row_items[2]
         end
-        break if recommendation.present? 
+
+        if row_items[3] == "accepts"
+          actions[:acceptance_time] ||= get_time(row)
+        end
       end
-      recommendation
-      # return recommendation data(format: Hash)
-      # TODO # save two recommendations to an array, sort with time & select first
+      actions
     end
 
-    def find_acceptance(rows, key)
-      acceptance = {}
-      rows.each do |row|
-        if row.include? " #{key}"
-          if row.include? "accepts"
-            acceptance[:acceptance_time] = row.strip.first(TIME_SPREAD)
-          end
-        end
-      end
-      acceptance  
-      # return acceptance data(format: Hash)
+    def get_time(row)
+      row.strip.first(TIME_SPREAD)
     end
+
+    # def find_recommendation(rows,key)
+    #   recommendation = {}
+    #   rows.each do |row|
+    #     if row.include? " #{key}"
+    #       if row.split(" ").include?("recommends") && row.split(" ")[4] == key
+    #         recommendation[:recommendation_time] = row.strip.first(TIME_SPREAD)
+    #         recommendation[:parent] = row.split(" ")[2]
+    #       end
+    #     end
+    #     break if recommendation.present? 
+    #   end
+    #   recommendation
+    #   # return recommendation data(format: Hash)
+    #   # TODO # save two recommendations to an array, sort with time & select first
+    # end
+
+    # def find_acceptance(rows, key)
+    #   acceptance = {}
+    #   rows.each do |row|
+    #     if row.include? " #{key}"
+    #       if row.include? "accepts"
+    #         acceptance[:acceptance_time] = row.strip.first(TIME_SPREAD)
+    #       end
+    #     end
+    #   end
+    #   acceptance  
+    #   # return acceptance data(format: Hash)
+    # end
 
   end
 end

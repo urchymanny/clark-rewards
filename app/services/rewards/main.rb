@@ -9,7 +9,7 @@ module Rewards
     end
 
     def perform
-      customer_rewards = Rewarder.new(customers).perform
+      customer_rewards = Rewarder.new(customers).perform  
       customer_rewards.each do |customer|
         response[customer.key] = customer.points
       end
