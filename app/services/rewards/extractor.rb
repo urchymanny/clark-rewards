@@ -41,7 +41,6 @@ module Rewards
         customer_data = build_customer(key,actions)
         customers_data << customer_data
       end
-      byebug
       customers_data
       # get customer recommendation
       # get customer acceptance
